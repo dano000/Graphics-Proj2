@@ -32,6 +32,7 @@ public class raycastController : MonoBehaviour
             }
             //Debug.Log("Num Taps: " + numTaps);
         }
+
         else
         {
             RaycastHit rcHit = new RaycastHit();
@@ -60,6 +61,7 @@ public class raycastController : MonoBehaviour
                     //{
 
                     //Debug.LogError(Input.mousePosition);
+                    if (camCtrl.inZoom) { 
                     if (Physics.Raycast(ray, out rcHit))
                     {
                         soundObject sc = rcHit.transform.gameObject.transform.parent.gameObject.GetComponent<soundObject>();
@@ -68,7 +70,7 @@ public class raycastController : MonoBehaviour
                         audio.Play();
 
                     }
-
+                    }
                     //  }
 
                     break;
