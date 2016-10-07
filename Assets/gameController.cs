@@ -19,7 +19,7 @@ public class gameController : MonoBehaviour {
     {
         for(int i=0; i < soundObjectArray.Length; i++)
         {
-            Vector3 currPos = new Vector3(-1 + (i*1.5f), 0, 0);
+            Vector3 currPos = new Vector3(-2 + (i*2.0f), 0, 0);
             Quaternion currRot = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
             Instantiate(soundObjectArray[i],currPos,currRot);
         }

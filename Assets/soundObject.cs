@@ -21,8 +21,8 @@ public class soundObject : MonoBehaviour {
 
         dir *= Time.deltaTime;
         transform.Translate(dir * 1);
-        Debug.LogError(dir);
+       // Debug.LogError(dir);
 
-        Debug.LogError(Mathf.Atan(dir.y / dir.x));
+        //Debug.LogError(Mathf.Atan(dir.y / dir.x));
 	}
 }
