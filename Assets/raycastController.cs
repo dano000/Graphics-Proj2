@@ -9,6 +9,7 @@ public class raycastController : MonoBehaviour
     private Vector3 newCampos;
     private bool isLerping = false;
     public cameraController camCtrl;
+    public float zSpace = 5.0f;
 
     // Use this for initialization
     void Start()
@@ -73,11 +74,17 @@ public class raycastController : MonoBehaviour
                     break;
                 case 2:
                     Debug.Log("Double Tap!");
-                    if (Physics.Raycast(ray, out rcHit))
-                    {
-                        newCampos = new Vector3(rcHit.transform.gameObject.transform.position.x, camCtrl.cam.transform.position.y, camCtrl.cam.transform.position.z);
-                        camCtrl.doCameraLerp(newCampos);
+                    if (camCtrl.inZoom == false) { 
+                        if (Physics.Raycast(ray, out rcHit))
+                        {
+                            newCampos = new Vector3(rcHit.transform.gameObject.transform.position.x, camCtrl.cam.transform.position.y, rcHit.transform.gameObject.transform.position.z - zSpace);
+                            camCtrl.doCameraLerp(newCampos);
 
+                        }
+                    }
+                    else
+                    {
+                        camCtrl.resetCameraPos();
                     }
                     break;
                 case 3:
