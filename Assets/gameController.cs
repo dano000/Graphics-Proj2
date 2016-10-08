@@ -7,6 +7,7 @@ public class gameController : MonoBehaviour {
     public GameObject[] instanciatedSounds;
     public float spacing = 5.0f;
     public GameObject[] soundOrder;
+    public GameObject[] answerOrder;
     public int[] soundOrderRotation;
     public int maxRepeats = 3;
     // Use this for initialization
@@ -39,7 +40,7 @@ public class gameController : MonoBehaviour {
         for(int i=0; i< level; i++)
         {
             GameObject selectedSound = instanciatedSounds[Random.Range(0,sounds.Length)];
-            for(int j=0; j < Random.Range(1, maxRepeats);j++)
+            for(int j=0; j < Random.Range(1, maxRepeats+1);j++)
             {
                 Debug.Log(j);
                 soundOrder[j] = selectedSound;
@@ -54,6 +55,7 @@ public class gameController : MonoBehaviour {
     {
         for (int i = 0; i < soundOrder.Length; i++)
         {
+            // add try/except here for null sounds
             AudioSource currentAudio = soundOrder[i].GetComponentInChildren<AudioSource>();
             
             currentAudio.pitch = soundOrderRotation[i];
