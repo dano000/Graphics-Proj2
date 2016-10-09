@@ -16,12 +16,16 @@ public class raycastController : MonoBehaviour
     public int currentAns = 0;
     public GameObject LoseText;
     public GameObject WinText;
+    public Canvas canvas;
 
     // Use this for initialization
     void Start()
     {
-        float xPos = LoseText.transform.parent.gameObject.GetComponent<Canvas>().scaleFactor * LoseText.GetComponent<RectTransform>().rect.width; 
-        LoseText.GetComponent<RectTransform>().transform.position = new Vector3(xPos, LoseText.GetComponent<RectTransform>().rect.height * -2, camCtrl.cam.transform.position.z);
+
+        LoseText.GetComponent<RectTransform>().position = new Vector3(canvas.pixelRect.width/2, LoseText.GetComponent<RectTransform>().rect.height * -2,0);
+        WinText.GetComponent<RectTransform>().position = new Vector3(canvas.pixelRect.width / 2, WinText.GetComponent<RectTransform>().rect.height * -2, 0);
+        Debug.Log(LoseText.GetComponent<RectTransform>().rect.height);
+        
     }
 
     // Update is called once per frame
@@ -107,6 +111,7 @@ public class raycastController : MonoBehaviour
 
                         if (answerOrder[currentAns] == gameCtrl.soundOrder[currentAns])
                         {
+                            
                             Debug.Log("Correct Guess!");
                            
 
@@ -114,13 +119,16 @@ public class raycastController : MonoBehaviour
                         else
                         {
                             Debug.Log("Incorrect Guess!");
-                            SceneManager.GetActiveScene();
+                            LoseText.GetComponent<Animation>().Play("LoseTextHolder");
+                            StartCoroutine(loseGame());
                         }
 
                     currentAns++;
                     if (currentAns == (gameCtrl.soundOrder.Count))
                     {
                         Debug.Log("Game Won!");
+                        winGame();
+                        WinText.GetComponent<Animation>().Play("LoseTextHolder");
                     }
                     }
                     break;
@@ -136,9 +144,13 @@ public class raycastController : MonoBehaviour
         }
     }
 
-    public void loseGame()
+    IEnumerator loseGame()
     {
-        Vector3 newTextPos = new Vector3(0, 0, 0);
+        
+        
+        yield return new WaitForSeconds(3);
+        
+        SceneManager.LoadScene("main");
 
     }
 
