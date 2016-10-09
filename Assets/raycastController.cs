@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class raycastController : MonoBehaviour
 {
@@ -114,7 +113,7 @@ public class raycastController : MonoBehaviour
                         else
                         {
                             Debug.Log("Incorrect Guess!");
-                            SceneManager.GetActiveScene();
+                            Application.LoadLevel(Application.loadedLevel);
                         }
 
                     currentAns++;
