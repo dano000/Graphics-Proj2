@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class raycastController : MonoBehaviour
 {
@@ -113,11 +114,11 @@ public class raycastController : MonoBehaviour
                         else
                         {
                             Debug.Log("Incorrect Guess!");
-                            Application.LoadLevel(Application.loadedLevel);
+                            SceneManager.GetActiveScene();
                         }
 
                     currentAns++;
-                    if (currentAns == (gameCtrl.soundOrder.Length - 1))
+                    if (currentAns == (gameCtrl.soundOrder.Count))
                     {
                         Debug.Log("Game Won!");
                     }
