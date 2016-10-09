@@ -121,6 +121,7 @@ public class raycastController : MonoBehaviour
                             Debug.Log("Incorrect Guess!");
                             LoseText.GetComponent<Animation>().Play("LoseTextHolder");
                             StartCoroutine(loseGame());
+
                         }
 
                     currentAns++;
@@ -149,7 +150,7 @@ public class raycastController : MonoBehaviour
         
         
         yield return new WaitForSeconds(3);
-        
+
         SceneManager.LoadScene("main");
 
     }
