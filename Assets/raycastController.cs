@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class raycastController : MonoBehaviour
@@ -17,6 +18,8 @@ public class raycastController : MonoBehaviour
     public GameObject LoseText;
     public GameObject WinText;
     public Canvas canvas;
+    public Button btn;
+    public GameObject currentGuess;
 
     // Use this for initialization
     void Start()
@@ -24,8 +27,6 @@ public class raycastController : MonoBehaviour
 
         LoseText.GetComponent<RectTransform>().position = new Vector3(canvas.pixelRect.width/2, LoseText.GetComponent<RectTransform>().rect.height * -2,0);
         WinText.GetComponent<RectTransform>().position = new Vector3(canvas.pixelRect.width / 2, WinText.GetComponent<RectTransform>().rect.height * -2, 0);
-        Debug.Log(LoseText.GetComponent<RectTransform>().rect.height);
-        
     }
 
     // Update is called once per frame
@@ -75,10 +76,13 @@ public class raycastController : MonoBehaviour
                     if (camCtrl.inZoom) {
                         if (Physics.Raycast(ray, out rcHit))
                         {
+                            
                             soundObject sc = rcHit.transform.gameObject.transform.parent.gameObject.GetComponent<soundObject>();
                             AudioSource audio = sc.GetComponentInChildren<AudioSource>();
                             audio.pitch = sc.pitch;
                             audio.Play();
+                            
+                            
 
                         }
                     }
@@ -92,45 +96,13 @@ public class raycastController : MonoBehaviour
                         {
                             newCampos = new Vector3(rcHit.transform.gameObject.transform.position.x, camCtrl.cam.transform.position.y, rcHit.transform.gameObject.transform.position.z - zSpace);
                             camCtrl.doCameraLerp(newCampos);
-
+                            currentGuess = rcHit.transform.gameObject.transform.parent.gameObject;
                         }
                     }
                     else
                     {
                         camCtrl.resetCameraPos();
-                    }
-                    break;
-                case 3:
-                    if (Physics.Raycast(ray, out rcHit)) { 
-                        Debug.Log("Triple Tap!");
-
-
-                        answerOrder[currentAns] = rcHit.transform.gameObject.transform.parent.gameObject;
-                        Debug.Log(answerOrder[currentAns]);
-                        Debug.Log(gameCtrl.soundOrder);
-
-                        if (answerOrder[currentAns] == gameCtrl.soundOrder[currentAns])
-                        {
-                            
-                            Debug.Log("Correct Guess!");
-                           
-
-                        }
-                        else
-                        {
-                            Debug.Log("Incorrect Guess!");
-                            LoseText.GetComponent<Animation>().Play("LoseTextHolder");
-                            StartCoroutine(loseGame());
-
-                        }
-
-                    currentAns++;
-                    if (currentAns == (gameCtrl.soundOrder.Count))
-                    {
-                        Debug.Log("Game Won!");
-                        winGame();
-                        WinText.GetComponent<Animation>().Play("LoseTextHolder");
-                    }
+                        currentGuess = null;
                     }
                     break;
                 default:
@@ -138,10 +110,18 @@ public class raycastController : MonoBehaviour
 
             }
 
+            
 
+           
 
             numTaps = 0;
             tapTimeframe = 0.5f;
+
+           
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            handleAdd();
         }
     }
 
@@ -160,6 +140,34 @@ public class raycastController : MonoBehaviour
 
     }
 
+    public void handleAdd()
+    {
+        
+        answerOrder[currentAns] = currentGuess;
+        if (answerOrder[currentAns] == gameCtrl.soundOrder[currentAns])
+        {
+            Debug.Log("Correct Guess!");
+        }
+        else
+        {
+            Debug.Log("Incorrect Guess!");
+            LoseText.GetComponent<Animation>().Play("LoseTextHolder");
+            StartCoroutine(loseGame());
+
+        }
+
+        currentAns++;
+        if (currentAns == (gameCtrl.soundOrder.Count))
+        {
+            Debug.Log("Game Won!");
+            winGame();
+            WinText.GetComponent<Animation>().Play("LoseTextHolder");
+        }
+  
+        Debug.Log("Button Pressed!");
+    }
+
+        
 }
 
 
