@@ -13,6 +13,7 @@ public class raycastController : MonoBehaviour
     public cameraController camCtrl;
     public gameController gameCtrl;
     public float zSpace = 5.0f;
+    public float ySpace = 0.0f;
     public GameObject[] answerOrder;
     public int currentAns = 0;
     public GameObject LoseText;
@@ -94,7 +95,7 @@ public class raycastController : MonoBehaviour
                     if (camCtrl.inZoom == false) {
                         if (Physics.Raycast(ray, out rcHit))
                         {
-                            newCampos = new Vector3(rcHit.transform.gameObject.transform.position.x, camCtrl.cam.transform.position.y, rcHit.transform.gameObject.transform.position.z - zSpace);
+                            newCampos = new Vector3(rcHit.transform.gameObject.transform.position.x, camCtrl.cam.transform.position.y - 2.0f, rcHit.transform.gameObject.transform.position.z - zSpace);
                             camCtrl.doCameraLerp(newCampos);
                             currentGuess = rcHit.transform.gameObject.transform.parent.gameObject;
                         }
