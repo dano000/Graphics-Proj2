@@ -13,7 +13,7 @@ public class soundObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 dir = Vector3.zero;
+        /*Vector3 dir = Vector3.zero;
         dir.x = -Input.acceleration.y;
         dir.z = Input.acceleration.x;
         if (dir.sqrMagnitude > 1)
@@ -24,5 +24,6 @@ public class soundObject : MonoBehaviour {
        // Debug.LogError(dir);
 
         //Debug.LogError(Mathf.Atan(dir.y / dir.x));
-	}
+	*/
+    }
 }

@@ -96,12 +96,14 @@ public class raycastController : MonoBehaviour
 						newCampos = new Vector3(rcHit.transform.gameObject.transform.position.x, camCtrl.cam.transform.position.y - 2.0f, rcHit.transform.gameObject.transform.position.z - 5.0f);
                             camCtrl.doCameraLerp(newCampos);
                             currentGuess = rcHit.transform.gameObject.transform.parent.gameObject;
+                            camCtrl.isActiveGyro = true;
                         }
                     }
                     else
                     {
                         camCtrl.resetCameraPos();
                         currentGuess = null;
+                        camCtrl.isActiveGyro = false;
                     }
                     break;
                 default:
