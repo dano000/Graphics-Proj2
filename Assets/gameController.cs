@@ -11,12 +11,24 @@ public class gameController : MonoBehaviour {
     public GameObject[] answerOrder;
     public int[] soundOrderRotation;
     public int maxRepeats = 3;
+	public Camera cubemapCamera;
+	public Cubemap map;
     // Use this for initialization
     void Start () {
+		// create cubemap for reflective glass
+		Vector3 oldPos = cubemapCamera.transform.position;
+		Quaternion oldRot = cubemapCamera.transform.rotation;
+		cubemapCamera.transform.position = new Vector3 (0.0f, 1.0f, 0.0f);
+		cubemapCamera.transform.rotation = Quaternion.LookRotation (Vector3.left);
+		cubemapCamera.RenderToCubemap (map);
+		cubemapCamera.transform.position = oldPos;
+		cubemapCamera.transform.rotation = oldRot;
+		// create objects
         soundOrder = new List<GameObject>();
         generateObjects(sounds);
         generateSoundOrder(1);
         StartCoroutine(playEngineSound());
+
     }
      
 	

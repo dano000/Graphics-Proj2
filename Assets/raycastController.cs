@@ -9,7 +9,6 @@ public class raycastController : MonoBehaviour
     private int numTaps = 0;
     private Vector3 campos;
     private Vector3 newCampos;
-    private bool isLerping = false;
     public cameraController camCtrl;
     public gameController gameCtrl;
     public GameObject[] answerOrder;
