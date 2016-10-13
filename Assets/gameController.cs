@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class gameController : MonoBehaviour {
 
+	public static int level = 1;
     public GameObject[] sounds;
     public GameObject[] instanciatedSounds;
     public float spacing = 5.0f;
@@ -13,6 +14,7 @@ public class gameController : MonoBehaviour {
     public int maxRepeats = 3;
 	public Camera cubemapCamera;
 	public Cubemap map;
+
     // Use this for initialization
     void Start () {
 		// create cubemap for reflective glass
@@ -26,11 +28,10 @@ public class gameController : MonoBehaviour {
 		// create objects
         soundOrder = new List<GameObject>();
         generateObjects(sounds);
-        generateSoundOrder(1);
+        generateSoundOrder(gameController.level);
         StartCoroutine(playEngineSound());
 
     }
-     
 	
 	// Update is called once per frame
 	void Update () {
@@ -56,9 +57,8 @@ public class gameController : MonoBehaviour {
             GameObject selectedSound = instanciatedSounds[Random.Range(0,sounds.Length)];
             for(int j=0; j < Random.Range(1, maxRepeats+1);j++)
             {
-                Debug.Log(j);
                 soundOrder.Add(selectedSound);
-                soundOrderRotation[j] = 1;
+                //soundOrderRotation[j] = 1;
             }
         }
     }
@@ -72,7 +72,7 @@ public class gameController : MonoBehaviour {
             // add try/except here for null sounds
             AudioSource currentAudio = soundOrder[i].GetComponentInChildren<AudioSource>();
             
-            currentAudio.pitch = soundOrderRotation[i];
+            //currentAudio.pitch = soundOrderRotation[i];
             currentAudio.Play();
             yield return new WaitForSeconds(currentAudio.clip.length);
         }
