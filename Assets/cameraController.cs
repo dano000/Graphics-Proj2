@@ -52,10 +52,6 @@ public class cameraController : MonoBehaviour {
         currTarget = newCampos;
         isLerping = true;
         inZoom = true;
-        Debug.Log("Inside cDoCamLerp");
-        Debug.Log("currentCamPos" + cam.transform.position);
-        Debug.Log("endCamPos" + newCampos);
-
     }
 
     public void resetCameraPos()
