@@ -91,6 +91,7 @@ public class raycastController : MonoBehaviour
                             AudioSource audio = sc.GetComponentInChildren<AudioSource>();
                             audio.pitch = sc.pitch;
                             audio.Play();
+                            sc.startJiggle();
                         }
                     }
                     //  }
