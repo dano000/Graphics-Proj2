@@ -1,6 +1,10 @@
 Project 2 Graphics and Interaction COMP30019
 Daniel Schulz - schulzd (635700), Diana Ruth - druth (851465), Maile Naito - mnaito (853244)
 
+Gameplay Video: https://youtu.be/qvOLykQiNpE
+
+*NOTE: As of 17/10/16, not all tests passed in the Windows Store Certification due to an issue with the Windows 10 version. This issue will be resolved in the final submission.
+
 Enchanting Guess
 
 Section 1
