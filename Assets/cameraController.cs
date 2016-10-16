@@ -25,7 +25,7 @@ public class cameraController : MonoBehaviour {
         if(isActiveGyro)
         {
             Input.gyro.enabled = true;
-            cameraGyro();
+            //cameraGyro();
 
         }
         else
@@ -64,7 +64,7 @@ public class cameraController : MonoBehaviour {
     public void cameraGyro()
     {
         //Debug.LogError("Gyro x: " + Input.gyro.rotationRateUnbiased.x + " y: " + Input.gyro.rotationRateUnbiased.y + " z: " + Input.gyro.rotationRateUnbiased.z);
-        rcCtrl.currentGuess.transform.Rotate(0, -Input.gyro.rotationRateUnbiased.y, 0);
+        //rcCtrl.currentGuess.transform.Rotate(0, -Input.gyro.rotationRateUnbiased.y, 0);
         
     }
 }
