@@ -1,7 +1,4 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
-
-// CubeReflect.shader
+﻿// CubeReflect.shader
 // This shader creates a dark metal effect.
 // It uses a Cubemap that is generated using the GameObjectSpawner object.
 // The surface should not 100% reflective like a mirror, and has manipulated
@@ -51,10 +48,10 @@ Shader "Unlit/CubeReflect" {
 
             // calculate the direction of the view in terms of the world, and
             // account for the position of the camera
-            o.view = mul(_Object2World, v.vertex).xyz - _WorldSpaceCameraPos;
+            o.view = mul(unity_ObjectToWorld, v.vertex).xyz - _WorldSpaceCameraPos;
 
             // calculate the direction of the normal in terms of the world
-            o.normal = normalize(mul(float4(v.normal, 0.0), _World2Object).xyz);
+            o.normal = normalize(mul(float4(v.normal, 0.0), unity_WorldToObject).xyz);
 
             // transform vertex coordinates to camera coordinates
             o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
