@@ -17,7 +17,7 @@ The start menu allows the user to enter the main game, view the instructions, an
 
 Section 3
 =========
-All of the objects in the game came from the Tavern library in the Unity Assets Store (source can be found in section 5). The sounds are from sources on the internet that are licensed under various creative commons licenses (sources can be found in section 5). All other objects used in this project are included in Unity. There are empty GameObjects that the scripts are attached to that allow the game to spawn all of the objects, make guesses, move to different levels, and control the game based on touch and accelerometer input from the user.
+All of the objects in the game except the fire particle system came from the Tavern library in the Unity Assets Store (source can be found in section 5). The sounds are from sources on the internet that are licensed under various creative commons licenses (sources can be found in section 5). The fire is a particle system that is included in the Unity Standard Assets ParticleSystem package. All other objects used in this project were created using standard Unity game objects. There are empty GameObjects that the scripts are attached to that allow the game to spawn all of the objects, make guesses, move to different levels, and control the game based on touch and accelerometer input from the user.
 
 Section 4
 =========
