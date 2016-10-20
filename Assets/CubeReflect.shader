@@ -13,6 +13,7 @@ Shader "Unlit/CubeReflect" {
    SubShader {
       Pass {   
          CGPROGRAM
+		#pragma target 4.0
  
          #pragma vertex vert  
          #pragma fragment frag 
@@ -35,7 +36,7 @@ Shader "Unlit/CubeReflect" {
 
          // output vertex structure
          struct vertOut {
-         	float4 vertex : SV_POSITION;
+         	float4 vertex : POSITION;
 			float3 normal : TEXCOORD0;
 			float3 view : TEXCOORD1;
 			float4 color : COLOR;

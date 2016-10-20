@@ -14,7 +14,6 @@ Shader "Custom/MyCustomShader" {
 			Tags {"LightMode" = "ForwardBase"}
 			
 		CGPROGRAM
-
 		#pragma vertex vert
 		#pragma fragment frag	
 		#include "UnityCG.cginc"
@@ -29,7 +28,7 @@ Shader "Custom/MyCustomShader" {
 
 		struct output {
 			float2 uv: TEXCOORD0;
-			float4 vertex: SV_POSITION;
+			float4 vertex: POSITION;
 			float3 lightDir : TEXCOORD1;
 			float3 normal : TEXCOORD2;
 			LIGHTING_COORDS(3, 4)
@@ -52,9 +51,6 @@ Shader "Custom/MyCustomShader" {
 			o.lightDir = ObjSpaceLightDir(vertIn.vertex);
 			// pass the uv/texture in this first pass
 			o.uv = vertIn.uv;
-
-			// send attenuation to the fragment shader (ie. the falloff of light intensity)
-			TRANSFER_VERTEX_TO_FRAGMENT(o);
 
 			o.lighting = float3(0.0, 0.0, 0.0);
 
@@ -131,7 +127,7 @@ Shader "Custom/MyCustomShader" {
 			o.uv = v.texcoord.xy;
 			o.lightDir = ObjSpaceLightDir(v.vertex);
 			o.normal = v.vertex;
-
+			// Transfer the attenuation from the vertex to the fragment shader usign a macro
 			TRANSFER_VERTEX_TO_FRAGMENT(o);
 			return o;
 		}
@@ -145,7 +141,7 @@ Shader "Custom/MyCustomShader" {
 			// only take the direction of the light coming in.
 			fixed4 colour;
 			o.lightDir = normalize(o.lightDir);
-			// get the attenutation that was passed from vertex part
+			// get the attenutation that was passed from vertex part using a macro
 			fixed attenuation = LIGHT_ATTENUATION(o);
 			// unpack the actual texture to the output uv coordinates.
 			fixed4 mainTex = tex2D(_MainTex, o.uv);
