@@ -25,22 +25,19 @@ public class AccelerometerControl : MonoBehaviour {
 	void Update () {
         float increment = 0.0f;
         // calculate new filtered values
-        float filteredY = filterY.NextStep(Time.deltaTime, Input.acceleration.y);
+        float filteredY = filterY.NextStep(Time.deltaTime, Input.acceleration.x);
         float filteredZ = filterZ.NextStep(Time.deltaTime, Input.acceleration.z);
 
         // calculate tilt - angle between y and negative z-axis
         float tilt = Mathf.Atan2(filteredY, -filteredZ) * Mathf.Rad2Deg; 
-        float clampedTilt = Mathf.Clamp(tilt, -45f, 45f);
+        float clampedTilt = Mathf.Clamp(tilt, -45.0f, 45.0f);
 
         if (clampedTilt > 0.0)
-            increment = 1.0f;
+            increment = 0.3f;
         else if (clampedTilt < 0.0)
-            increment = -1.0f;
+            increment = -0.3f;
 
-        //Change intensity of spotlight
-        if (lt.intensity <2.0)
-        { 
         lt.intensity += increment;
-        }
+        
     }
 }
