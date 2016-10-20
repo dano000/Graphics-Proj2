@@ -14,6 +14,7 @@ Shader "Custom/MyCustomShader" {
 			Tags {"LightMode" = "ForwardBase"}
 			
 		CGPROGRAM
+		#pragma target 4.0 
 		#pragma vertex vert
 		#pragma fragment frag	
 		#include "UnityCG.cginc"
@@ -28,7 +29,7 @@ Shader "Custom/MyCustomShader" {
 
 		struct output {
 			float2 uv: TEXCOORD0;
-			float4 vertex: POSITION;
+			float4 vertex: SV_POSITION;
 			float3 lightDir : TEXCOORD1;
 			float3 normal : TEXCOORD2;
 			LIGHTING_COORDS(3, 4)
@@ -105,13 +106,14 @@ Shader "Custom/MyCustomShader" {
 
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile_fwdadd                        
+			#pragma multi_compile_fwdadd 
+			#pragma target 4.0
 			#include "AutoLight.cginc"
 			#include "UnityCG.cginc"
 
 			struct output {
 			float2 uv: TEXCOORD0;
-			float4 vertex: POSITION;
+			float4 vertex: SV_POSITION;
 			float3 lightDir : TEXCOORD1;
 			float3 normal : TEXCOORD2;
 			LIGHTING_COORDS(3, 4)
@@ -119,7 +121,7 @@ Shader "Custom/MyCustomShader" {
 		};
 
 		// source: https://docs.unity3d.com/Manual/SL-VertexProgramInputs.html
-		output vert(appdata_tan v)
+		output vert(appdata_tan v) 
 		{
 			output o;
 			// same as above, but just passing data  straight out to the fragment, as this is just used for fragment.

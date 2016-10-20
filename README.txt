@@ -3,8 +3,6 @@ Daniel Schulz - schulzd (635700), Diana Ruth - druth (851465), Maile Naito - mna
 
 Gameplay Video: https://youtu.be/qvOLykQiNpE
 
-*NOTE: As of 17/10/16, not all tests passed in the Windows Store Certification due to an issue with the Windows 10 version. This issue will be resolved in the final submission.
-
 Enchanting Guess
 
 Section 1
@@ -31,6 +29,10 @@ The cube reflect shader takes a cubemap as a parameter. The cubemap is generated
 DiffuseSpecularBumpmapShader
 ============================
 This shader was written, exploiting the use of surface shaders within Unity's Shader Language. This allowed for a style of PhongBlinn shading to be implemented, as well as, adding a Bumpmap. Textures are samples, on each 2D point (ie. pixel), for Diffuse, Specular and BumpMap components. Diffuse RGB components sets the Albedo component(main colour) of the surface, Specular components RGB are multiplied, on top of of Diffuse components, while BumpMap components (ie. from the BumpMap texture) are unpacked to the Normal component of the output. Thus giving a surface which appears to be slightly bumpy, when paired with the correct bumpmap textures.
+
+MyCustomShader
+==========================
+A Second Shader was also written, that utilises Vertex and Fragment shaders to Implment multiple lights. However issues relating to the built versions, meant it could not be built for surfaces and the actual problem could not be diagnosed - The version of the game worked correctly within the editor (even on the surface) and on other PCs where the game was built, but not on a built version of the surface.
 
 Section 5 Attributions
 ======================
