@@ -38,6 +38,9 @@ public class AccelerometerControl : MonoBehaviour {
             increment = -1.0f;
 
         //Change intensity of spotlight
+        if (lt.intensity <2.0)
+        { 
         lt.intensity += increment;
-	}
+        }
+    }
 }
