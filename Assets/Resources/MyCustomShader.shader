@@ -111,7 +111,7 @@ Shader "Custom/MyCustomShader" {
 
 			struct output {
 			float2 uv: TEXCOORD0;
-			float4 vertex: SV_POSITION;
+			float4 vertex: POSITION;
 			float3 lightDir : TEXCOORD1;
 			float3 normal : TEXCOORD2;
 			LIGHTING_COORDS(3, 4)
@@ -136,7 +136,7 @@ Shader "Custom/MyCustomShader" {
 		fixed4 _Colour;
 		fixed4 _LightColor0;
 
-		fixed4 frag(output o) : COLOR
+		fixed4 frag(output o) : SV_Target
 		{
 			// only take the direction of the light coming in.
 			fixed4 colour;
