@@ -29,7 +29,7 @@ Shader "Custom/MyCustomShader" {
 
 		struct output {
 			float2 uv: TEXCOORD0;
-			float4 vertex: SV_POSITION;
+			float4 pos: SV_POSITION;
 			float3 lightDir : TEXCOORD1;
 			float3 normal : TEXCOORD2;
 			LIGHTING_COORDS(3, 4)
@@ -45,7 +45,7 @@ Shader "Custom/MyCustomShader" {
 		{
 			output o;
 			// calculate the position of the output vertex, relative to View of the scene (MVP)
-			o.vertex = mul(UNITY_MATRIX_MVP, vertIn.vertex);
+			o.pos = mul(UNITY_MATRIX_MVP, vertIn.vertex);
 			// Convert normal to word coordinates.
 			o.normal = normalize(mul(vertIn.normal, _World2Object));
 			// Get a vector from the light to the current vertex, unnormalised
@@ -89,7 +89,7 @@ Shader "Custom/MyCustomShader" {
 			// light is based on the normal of the vertex and angle at which the incident light is hitting it and of course it's colour.
 			float4 diffuseLight = saturate(dot(lightDir, o.normal)) * _LightColor0 ;
 
-			float4 worldPosition = normalize(float4(_WorldSpaceCameraPos, 1.0) - o.vertex);
+			float4 worldPosition = normalize(float4(_WorldSpaceCameraPos, 1.0) - o.pos);
 			//Blinn-Phong : Tale the half angle between the light direction and world position
 			float4 H = normalize((lightDir + worldPosition));
 			float specular = pow(saturate(dot(o.normal, H)), K);
@@ -113,7 +113,7 @@ Shader "Custom/MyCustomShader" {
 
 			struct output {
 			float2 uv: TEXCOORD0;
-			float4 vertex: SV_POSITION;
+			float4 pos: SV_POSITION;
 			float3 lightDir : TEXCOORD1;
 			float3 normal : TEXCOORD2;
 			LIGHTING_COORDS(3, 4)
@@ -125,7 +125,7 @@ Shader "Custom/MyCustomShader" {
 		{
 			output o;
 			// same as above, but just passing data  straight out to the fragment, as this is just used for fragment.
-			o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 			o.uv = v.texcoord.xy;
 			o.lightDir = ObjSpaceLightDir(v.vertex);
 			o.normal = v.vertex;
