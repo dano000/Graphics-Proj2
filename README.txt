@@ -1,7 +1,9 @@
 Project 2 Graphics and Interaction COMP30019
 Daniel Schulz - schulzd (635700), Diana Ruth - druth (851465), Maile Naito - mnaito (853244)
 
+Repository located at: 
 Gameplay Video: https://youtu.be/qvOLykQiNpE
+Certification Report is included: ValidationResult.htm
 
 Enchanting Guess
 
